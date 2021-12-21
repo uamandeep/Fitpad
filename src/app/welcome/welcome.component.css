@@ -1,4 +1,16 @@
-html, body {
+.welcome {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/* html, body {
     margin: 0 auto;
     width: 100%;
   }
@@ -21,7 +33,7 @@ html, body {
   }
   
   /* Main */
-  .main {
+  /* .main {
     background: url('https://images.pexels.com/photos/209983/pexels-photo-209983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940.jpg');
     background-size: cover;
     color: white;
@@ -51,9 +63,9 @@ html, body {
     padding: 6px 25px;
     margin: auto;
    
-  }
+  } */
   /* Supporting */
-  .supporting {
+  /* .supporting {
     background-color: #1c1c1c;
     text-align: center;
     padding: 50px 0px 80px;
@@ -107,7 +119,7 @@ html, body {
   }
   
   /* Feature */
-  .feature {
+  /* .feature {
     background: url('https://images.pexels.com/photos/841130/pexels-photo-841130.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940.jpg');
     background-size: cover;
     height: 600px;
@@ -133,9 +145,9 @@ html, body {
     text-transform: uppercase;
     width: 300px;
     
-  }
+  } */ 
   /* Footer */
-  .footer {
+  /* .footer {
     background: url('https://images.pexels.com/photos/2729899/pexels-photo-2729899.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940.jpg');
       background-size: cover;
     height: 600px;
@@ -179,4 +191,4 @@ html, body {
     .feature h2 {
       font-size: 60px;
     }
-  }
+  }  */
