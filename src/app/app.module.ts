@@ -20,6 +20,11 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
 import {MatTableModule} from '@angular/material/table';
+import { AngularFireModule } from '@angular/fire/compat';
+import { environment } from 'src/environments/environment';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+
+
 
 
 @NgModule({
@@ -44,7 +49,10 @@ import {MatTableModule} from '@angular/material/table';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule
+    MatTableModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
