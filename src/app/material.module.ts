@@ -37,7 +37,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatSelectModule,
         MatTableModule,
         MatSortModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatInputModule
+
     ],
     exports: [
         MatButtonModule,
@@ -57,8 +59,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
         MatProgressSpinnerModule,
         MatTableModule,
         MatSortModule,
-        MatPaginatorModule
-        
+        MatPaginatorModule,
+        MatInputModule
 
     ]
 })
