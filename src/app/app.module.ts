@@ -18,6 +18,8 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AuthService } from './auth/auth.service';
+import { TrainingService } from './training/training.service';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -41,9 +43,10 @@ import { AuthService } from './auth/auth.service';
     MaterialModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    MatTableModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent]
 })
