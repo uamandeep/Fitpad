@@ -3,7 +3,8 @@ import { Subject } from "rxjs";
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { map } from 'rxjs/operators';
-
+import { Subscription } from "rxjs";
+import { subscribeOn } from "rxjs-compat/operator/subscribeOn";
 
 @Injectable({
     providedIn: 'root'
@@ -11,15 +12,17 @@ import { map } from 'rxjs/operators';
 export class TrainingService {
     exerciseChanged = new Subject<Exercise>();
     exercisesChanged = new Subject<Exercise[]>();
+    finishedExercisesChanged = new Subject<Exercise[]>();
+
     private availableExercises: Exercise[] = []
     private runningExercise: Exercise;
-    private exercises: Exercise[] = [];
+    private fbSubs: Subscription[] =[];
 
     constructor(private db: AngularFirestore){}
 
 
     fetchAvailableExercises() {
-    this.db
+    this.fbSubs.push(this.db
     .collection('availableExercises')
     .snapshotChanges()
     .pipe(
@@ -36,7 +39,7 @@ export class TrainingService {
     .subscribe((exercises: Exercise[]) =>{
         this.availableExercises = exercises;
         this.exercisesChanged.next([...this.availableExercises]);
-    });
+    }));
     }
 
     startExercise(selectedId: string) {
@@ -47,16 +50,20 @@ export class TrainingService {
     };
 
     completeExercise() {
-        this.exercises.push({...this.runningExercise, date: new Date(), state:'completed'});
+        this.addDataToDatabase({
+            ...this.runningExercise,
+            date: new Date(),
+            state:'completed'
+        });
         this.runningExercise = null;
         this.exerciseChanged.next(null);
     }
 
     cancelExercise(progress:number) {
-        this.exercises.push({
+        this.addDataToDatabase({
             ...this.runningExercise,
             duration: this.runningExercise.duration * (progress/100),
-            calories: this.runningExercise.duration * (progress/100),
+            calories: this.runningExercise.calories * (progress/100),
             date: new Date(),
             state:'cancelled'
         });
@@ -64,12 +71,25 @@ export class TrainingService {
         this.exerciseChanged.next(null);
     }
 
+
+
     getRunningExercise() {
-        return { ...this.runningExercise};
+        return { ...this.runningExercise };
     }
 
-    getCompletedOrCancelledExercises(){
-        return this.exercises.slice();
+    fetchCompletedOrCancelledExercises(){
+        this.fbSubs.push(this.db.collection('finishedExercises').valueChanges()
+        .subscribe((exercises: Exercise[]) => {
+            this.finishedExercisesChanged.next(exercises);
+        }));
+    }
+
+        cancelSubscriptions(){
+            this.fbSubs.forEach(sub => sub.unsubscribe())
+        }
+
+    private addDataToDatabase(exercise: Exercise) {
+        this.db.collection('finishedExercises').add(exercise);
     }
 
 }

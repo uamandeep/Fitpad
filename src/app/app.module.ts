@@ -19,11 +19,11 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { StopTrainingComponent } from './training/current-training/stop-training.component';
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training.service';
-import {MatTableModule} from '@angular/material/table';
+// import {MatTableModule} from '@angular/material/table';
 import { AngularFireModule } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 
@@ -49,9 +49,10 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTableModule,
+    // MatTableModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule
 
   ],
   providers: [AuthService, TrainingService],

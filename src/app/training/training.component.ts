@@ -27,8 +27,6 @@ export class TrainingComponent implements OnInit {
     });
   }
 
-  toggleBackground() {
-    this.background = this.background ? undefined : 'primary';
-  }
+  
 
 }

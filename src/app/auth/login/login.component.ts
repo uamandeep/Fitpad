@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { AuthService } from '../auth.service';
+// import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-login',
@@ -29,6 +30,6 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password
     });
   }
-  }
+}
 
 
