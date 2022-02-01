@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemePalette } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import { TrainingService } from './training.service';
 
@@ -9,7 +8,6 @@ import { TrainingService } from './training.service';
   styleUrls: ['./training.component.css']
 })
 export class TrainingComponent implements OnInit {
-  background: ThemePalette = undefined;
   ongoingTraining = false;
   exerciseSubscription: Subscription;
 

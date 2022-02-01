@@ -29,7 +29,7 @@ export class TrainingService {
       map(docArray =>{
       return docArray.map(doc => {
         return {
-          id: doc.payload.doc.id,
+          id: doc.payload.doc['id'],
           name: doc.payload.doc.data()['name'],
           duration: doc.payload.doc.data()['duration'],
           calories: doc.payload.doc.data()['calories'] 
@@ -38,7 +38,7 @@ export class TrainingService {
     }))
     .subscribe((exercises: Exercise[]) =>{
         this.availableExercises = exercises;
-        this.exercisesChanged.next([...this.availableExercises]);
+        this.exercisesChanged.next(this.availableExercises);
     }));
     }
 
@@ -62,8 +62,8 @@ export class TrainingService {
     cancelExercise(progress:number) {
         this.addDataToDatabase({
             ...this.runningExercise,
-            duration: this.runningExercise.duration * (progress/100),
-            calories: this.runningExercise.calories * (progress/100),
+            duration: this.runningExercise?.duration * (progress/100),
+            calories: this.runningExercise?.calories * (progress/100),
             date: new Date(),
             state:'cancelled'
         });
@@ -84,9 +84,9 @@ export class TrainingService {
         }));
     }
 
-        cancelSubscriptions(){
-            this.fbSubs.forEach(sub => sub.unsubscribe())
-        }
+    cancelSubscriptions(){
+        this.fbSubs.forEach(sub => sub.unsubscribe())
+    }
 
     private addDataToDatabase(exercise: Exercise) {
         this.db.collection('finishedExercises').add(exercise);
