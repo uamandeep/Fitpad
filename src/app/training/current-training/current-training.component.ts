@@ -31,7 +31,7 @@ export class CurrentTrainingComponent implements OnInit {
         this.trainingService.completeExercise();
         clearInterval(this.timer);
       }
-    }, step);
+    }, 300);
   }
 
   onStop(): void{
